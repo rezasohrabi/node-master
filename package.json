@@ -1,0 +1,18 @@
+{
+  "name": "node-master",
+  "version": "1.0.0",
+  "description": "Node Master App!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Reza Sohrabi",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "uuid": "^8.3.2"
+  }
+}
