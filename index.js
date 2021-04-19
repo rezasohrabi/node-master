@@ -4,3 +4,4 @@
 })*/
 const path = require('./reference/path');
 const fileSystem = require('./reference/fileSystem');
+const operatingSystem = require('./reference/operatingSystem');
