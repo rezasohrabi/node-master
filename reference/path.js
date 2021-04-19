@@ -25,3 +25,4 @@ console.log('getDirectoryName:', getDirectoryName());
 console.log('getFileExtention:', getFileExtention());
 console.log('createPathObject:', createPathObject());
 console.log('join', join('test', 'test.js'));
+console.log('.............................');
