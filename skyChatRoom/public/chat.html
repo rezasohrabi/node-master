@@ -8,6 +8,13 @@
         rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" 
         crossorigin="anonymous">
         <title>Sky Chat Room</title>
+        <style>
+            .messages {
+                min-height: 400px;
+                max-height: 500px;
+                overflow-y: auto;
+            }
+        </style>
     </head>
     <body>
         <main class="container">
@@ -23,16 +30,7 @@
                         <h4 class="text-white">Javascript Room</h4>
                         <button class="btn btn-outline-light">LEAVE</button>
                     </header>
-                    <main class="messages col-12 mt-4" style="min-height: 400px;">
-                        <div class="m-2 bg-info text-white rounded p-2 mx-4">
-                            <div>hasan 3, 24 </div>
-                            <p>this is my message</p>
-                        </div>
-                        <div class="m-2 bg-info text-white rounded p-2 mx-4">
-                            <div>hasan 3, 24 </div>
-                            <p>this is my message</p>
-                        </div>
-                    </main>
+                    <main class="messages col-12 mt-4"></main>
                     <footer class="col-12">
                         <form class="send-message-form d-flex justify-content-between">
                             <input 
@@ -53,6 +51,11 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" 
     crossorigin="anonymous"></script>
+    <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js" 
+    integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==" 
+    crossorigin="anonymous"></script>
+
     <script src="./socket.io/socket.io.js"></script>
     <script src="./js/main.js"></script>
     </body>
