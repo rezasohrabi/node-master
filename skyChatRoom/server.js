@@ -7,6 +7,13 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
+io.on('connection', socket => {
+    console.log('New Connection')
+    socket.on('message', message => {
+        console.log(message);
+    })
+})
+
 app.use(
     express.static(path.join(__dirname, 'public'))
 );
