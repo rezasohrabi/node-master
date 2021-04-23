@@ -1,4 +1,5 @@
 const joinBtn = document.querySelector('.join-btn');
+const leaveBtn = document.querySelector('.leave-btn');
 const sendMessageForm = document.querySelector('.send-message-form');
 const messages = document.querySelector('.messages');
 
@@ -16,6 +17,7 @@ socket.on('broadcastMessage', (message) => {
     addNewMessage(message);
     //scroll down on new message
     messages.scrollTop = messages.scrollHeight;
+    console.log(message);
 })
 
 sendMessageForm.addEventListener('submit', e => {
@@ -27,6 +29,12 @@ sendMessageForm.addEventListener('submit', e => {
 
     e.target.elements.message.value = '';
     e.target.elements.message.focus();
+})
+
+leaveBtn.addEventListener('click', () => {
+    const isOk = window.confirm('Are you want to leave chat room?');
+
+    if(isOk) location.replace('../index.html');
 })
 
 const addNewMessage = (message) => {
