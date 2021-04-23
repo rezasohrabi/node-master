@@ -18,6 +18,10 @@ const deleteUser = (id) => {
     }
 }
 
+const getCurrentUser = id => {
+    return users.find(user => user.id === id);
+}
+
 const getRoomUsers = (room) => {
     return users.filter(user => user.room === room);
 } 
@@ -25,5 +29,6 @@ const getRoomUsers = (room) => {
 module.exports = {
     addUser,
     deleteUser,
+    getCurrentUser,
     getRoomUsers,
 }

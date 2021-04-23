@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const socket = require('socket.io');
 const { formatMessage, formatRoomUsers } = require('./utils');
-const { addUser, deleteUser } = require('./db');
+const { addUser, deleteUser, getCurrentUser } = require('./db');
 
 const app = express();
 const server = http.createServer(app);
@@ -32,6 +32,17 @@ io.on('connection', socket => {
             'changeRoomUsers',
             formatRoomUsers(user.room)
         );
+    });
+
+    socket.on('reciveMessage', (message) => {
+        const user = getCurrentUser(socket.id);
+        
+        if(user) {
+            io.to(user.room).emit(
+                'broadcastMessage', 
+                formatMessage(user.username, message)
+            );
+        }
     });
 
     socket.on('disconnect', () => {
