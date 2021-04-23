@@ -2,9 +2,8 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const socket = require('socket.io');
-const { formatMessage } = require('./utils');
+const { formatMessage, formatRoomUsers } = require('./utils');
 const { addUser, deleteUser } = require('./db');
-const { CHAT_NAME } = require('./constants');
 
 const app = express();
 const server = http.createServer(app);
@@ -28,16 +27,24 @@ io.on('connection', socket => {
             'broadcastMessage', 
             formatMessage(CHAT_NAME, `${user.username} has joined, say hi to him`)
         );
+
+        io.to(user.room).emit(
+            'changeRoomUsers',
+            formatRoomUsers(user.room)
+        );
     });
 
     socket.on('disconnect', () => {
         const user = deleteUser(socket.id);
 
         if(user) {
-            console.log(user)
             io.to(user.room).emit(
                 'broadcastMessage', 
                 formatMessage(CHAT_NAME, `${user.username} has left chat room`)
+            );
+            io.to(user.room).emit(
+                'changeRoomUsers',
+                formatRoomUsers(user.room)
             );
         }
     });

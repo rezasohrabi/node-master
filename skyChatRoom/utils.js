@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { getRoomUsers } = require('./db');
 
 const formatMessage = (username, message) => {
     return {
@@ -8,6 +9,14 @@ const formatMessage = (username, message) => {
     }
 }
 
+const formatRoomUsers = (room) => {
+    return {
+        room,
+        users: getRoomUsers(room)
+    }
+}
+
 module.exports = {
     formatMessage,
+    formatRoomUsers,
 }

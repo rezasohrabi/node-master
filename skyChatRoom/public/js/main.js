@@ -2,6 +2,7 @@ const joinBtn = document.querySelector('.join-btn');
 const leaveBtn = document.querySelector('.leave-btn');
 const sendMessageForm = document.querySelector('.send-message-form');
 const messages = document.querySelector('.messages');
+const usersWrapper = document.querySelector('.users');
 
 const socket = io();
 
@@ -17,7 +18,12 @@ socket.on('broadcastMessage', (message) => {
     addNewMessage(message);
     //scroll down on new message
     messages.scrollTop = messages.scrollHeight;
-    console.log(message);
+})
+
+//server fire when chat users join or leave room
+socket.on('changeRoomUsers', (users) => {
+    addRoomName(users.room);
+    addUsers(users.users);
 })
 
 sendMessageForm.addEventListener('submit', e => {
@@ -44,4 +50,19 @@ const addNewMessage = (message) => {
     <div>${message.username} | ${message.createdDate}</div>
     <p>${message.message}</p>`;
     messages.appendChild(div);
+}
+
+const addUsers = users => {
+    usersWrapper.textContent = '';
+    users.forEach((user) => {
+        const li = document.createElement('li');
+        li.classList.add('list-group-item');
+        li.textContent = user.username;
+        usersWrapper.appendChild(li);
+    })
+}
+
+const addRoomName = room => {
+    const roomName = document.querySelector('.room-name');
+    roomName.textContent = `Say Hi To ${room} Room!`;
 }
